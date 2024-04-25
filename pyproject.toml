@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "pytrading212"
+name = "python-trading212"
 version = "0.1.0"
-description = ""
+description = "An unofficial client for the official Trading212 API"
 authors = ["José Coelho <16445494+jcoelho93@users.noreply.github.com>"]
 readme = "README.md"
 
