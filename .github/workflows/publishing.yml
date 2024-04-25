@@ -11,5 +11,15 @@ jobs:
     permissions:
       id-token: write
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: 1.8.2
+      - name: poetry build
+        run: poetry build
       - name: Publish package distributions to Pypi
         uses: pypa/gh-action-pypi-publish@release/v1
