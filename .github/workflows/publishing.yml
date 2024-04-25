@@ -1,0 +1,15 @@
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  pypi-publish:
+    name: Upload release to Pypi
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - name: Publish package distributions to Pypi
+        uses: pypa/gh-action-pypi-publish@release/v1
