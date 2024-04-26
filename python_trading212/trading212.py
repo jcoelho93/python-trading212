@@ -10,10 +10,11 @@ from python_trading212.models import (
 
 
 class Trading212:
-    def __init__(self):
+    def __init__(self, host='live.trading212.com'):
         self.session = requests.Session()
         self.session.headers = self._authenticate()
-        self.url = "https://live.trading212.com/api/v0/"
+        host = os.getenv('TRADING212_HOST', host)
+        self.url = f"https://{host}/api/v0/"
 
     def _authenticate(self) -> Dict[str, str]:
         try:
@@ -84,7 +85,7 @@ class Trading212:
 
         instruments = []
         for instrument in response:
-            instruments.append(Exchange(**instrument))
+            instruments.append(Instrument(**instrument))
         return instruments
 
     def fetch_all_pies(self) -> List[Pie]:
