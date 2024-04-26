@@ -1,5 +1,12 @@
 # python-trading212
 
+![CICD Status](https://img.shields.io/github/actions/workflow/status/jcoelho93/python-trading212/ci.yml?label=cicd)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/python-trading212)
+![GitHub License](https://img.shields.io/github/license/jcoelho93/python-trading212)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/python-trading212)
+![PyPI - Version](https://img.shields.io/pypi/v/python-trading212)
+
+
 A client for the [Trading212 API](https://t212public-api-docs.redoc.ly/)
 
 ## Installation
