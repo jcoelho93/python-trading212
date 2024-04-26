@@ -1,2 +1,4 @@
 .venv/
 dist/
+__pycache__
+buid/
