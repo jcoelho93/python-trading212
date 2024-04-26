@@ -1,0 +1,16 @@
+on:
+  push
+
+jobs:
+  flake8:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: checkout source
+        uses: actions/checkout@v3
+      - name: setup python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: flake8 Linting
+        uses: py-actions/flake8@v2
