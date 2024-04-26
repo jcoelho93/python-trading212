@@ -1,11 +1,11 @@
-# pytrading212
+# python-trading212
 
 A client for the [Trading212 API](https://t212public-api-docs.redoc.ly/)
 
 ## Installation
 
 ```bash
-pip install pytrading212
+pip install python-trading212
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ export TRADING_212_KEY=<your-api-key>
 ```
 
 ```python
-from pytrading212 import Trading212, Pie
+from python_trading212 import Trading212, Pie
 
 trading212 = Trading212()
 pie: Pie = trading212.fetch_pie(123)
