@@ -4,16 +4,16 @@ from pydantic import BaseModel
 
 
 class Position(BaseModel):
-    averagePrice: int
-    currentPrice: int
+    averagePrice: float
+    currentPrice: float
     frontend: str
-    fxPpl: Optional[int]
+    fxPpl: Optional[float]
     initialFillDate: str
-    maxBuy: int
-    maxSell: int
-    pieQuantity: int
-    ppl: int
-    quantity: int
+    maxBuy: float
+    maxSell: float
+    pieQuantity: float
+    ppl: float
+    quantity: float
     ticker: str
 
 
@@ -37,8 +37,8 @@ class Instrument(BaseModel):
     addedOn: str
     currencyCode: str
     isin: str
-    maxOpenQuantity: int
-    minTradeQuantity: int
+    maxOpenQuantity: float
+    minTradeQuantity: float
     name: str
     shortname: str
     ticker: str
@@ -47,20 +47,20 @@ class Instrument(BaseModel):
 
 
 class DividendDetails(BaseModel):
-    gained: int
-    inCash: int
-    reinvested: int
+    gained: float
+    inCash: float
+    reinvested: float
 
 
 class Result(BaseModel):
-    investedValue: int
-    result: int
-    resultCoef: int
-    value: int
+    investedValue: float
+    result: float
+    resultCoef: float
+    value: float
 
 
 class Pie(BaseModel):
-    cash: int
+    cash: float
     dividendDetails: DividendDetails
     id: int
     progress: float
@@ -70,27 +70,27 @@ class Pie(BaseModel):
 
 class Order(BaseModel):
     creationTime: str
-    filledQuantity: int
-    filledValue: int
+    filledQuantity: float
+    filledValue: float
     id: int
-    limitPrice: int
-    quantity: int
+    limitPrice: float
+    quantity: float
     status: str
-    stopPrice: int
+    stopPrice: float
     strategy: str
     ticker: str
     type: str
-    value: int
+    value: float
 
 
 class AccountCash(BaseModel):
-    blocked: int
-    free: int
-    invested: int
-    pieCash: int
-    ppl: int
-    result: int
-    total: int
+    blocked: float
+    free: float
+    invested: float
+    pieCash: float
+    ppl: float
+    result: float
+    total: float
 
 
 class AccountMetadata(BaseModel):
