@@ -31,6 +31,49 @@ trading212.create_pie(
 
 ```
 
+## Supported Endpoints
+
+### Instruments Metadata
+
+- [x] Exchange List
+- [x] Instrument List
+
+## Pies
+
+- [x] Fetch all pies
+- [x] Create Pie
+- [x] Delete Pie
+- [x] Fetch a Pie
+- [x] Update pie
+
+## Equity Orders
+
+- [x] Fetch all
+- [ ] Place Limit order
+- [ ] Place Market order
+- [ ] Place Stop order
+- [ ] Place StopLimit order
+- [ ] Cancel by ID
+- [ ] Fetch by ID
+
+## Account Data
+
+- [x] Fetch account cash
+- [x] Fetch account metadata
+
+## Personal Portfolio
+
+- [x] Fetch all open positions
+- [x] Fetch a specific position
+
+## Historical Items
+
+- [x] Historical order data
+- [ ] Paid out dividens
+- [ ] Exports List
+- [ ] Export csv
+- [ ] Transaction list
+
 ## Disclaimer
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
