@@ -102,12 +102,23 @@ class Result(BaseModel):
 
 
 class Pie(BaseModel):
-    cash: float
-    dividendDetails: DividendDetails
-    id: int
-    progress: float
-    result: Result
-    status: str
+    # Pie Out
+    cash: Optional[float] = None
+    dividendDetails: Optional[DividendDetails] = None
+    id: Optional[int] = None
+    progress: Optional[float] = None
+    result: Optional[Result] = None
+    status: Optional[str] = None
+    # New Pie Input
+    name: Optional[str] = None
+    dividendCashAction: Optional[str] = None
+    endDate: Optional[datetime] = None
+    goal: Optional[float] = None
+    icon: Optional[Icon] = None
+    instrumentShares: Optional[Dict[str, float]] = None
+    # New Pie Output
+    instruments: Optional[List[Instrument]] = None
+    settings: Optional[Settings] = None
 
 
 class Order(BaseModel):
@@ -140,15 +151,6 @@ class AccountMetadata(BaseModel):
     id: int
 
 
-class NewPieIn(BaseModel):
-    name: str
-    dividendCashAction: str
-    endDate: datetime
-    goal: float
-    icon: Optional[Icon]
-    instrumentShares: Dict[str, float]
-
-
 class Issue(BaseModel):
     name: str
     severity: str
@@ -165,11 +167,6 @@ class Settings(BaseModel):
     instrumentShares: Dict[str, float]
     name: str
     pubicUrl: str
-
-
-class NewPieOut(BaseModel):
-    instruments: List[Instrument]
-    settings: Settings
 
 
 class Tax(BaseModel):
@@ -207,3 +204,45 @@ class HistoryItem(BaseModel):
 class HistoricalOrderData(BaseModel):
     items: List[HistoryItem]
     nextPagePath: str
+
+
+class LimitOrder(BaseModel):
+    limitPrice: float
+    quantity: float
+    ticker: str
+    timeValidity: str
+
+
+class MarketOrder(BaseModel):
+    quantity: float
+    ticker: str
+
+
+class StopOrder(BaseModel):
+    ticker: str
+    quantity: float
+    stopPrice: float
+    timeValidity: str
+
+
+class StopLimitOrder(BaseModel):
+    ticker: str
+    quantity: float
+    stopPrice: float
+    limitPrice: float
+    timeValidity: str
+
+
+class FilledOrder(BaseModel):
+    creationTime: str
+    filledQuantity: float
+    filledValue: float
+    id: int
+    limitPrice: float
+    quantity: float
+    status: str
+    stopPrice: float
+    strategy: str
+    ticker: str
+    type: str
+    value: float

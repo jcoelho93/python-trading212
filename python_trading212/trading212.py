@@ -5,7 +5,8 @@ from requests.exceptions import HTTPError
 from python_trading212.models import (
     Position, Exchange, Instrument,
     Pie, Order, AccountCash, AccountMetadata,
-    NewPieIn, NewPieOut, HistoricalOrderData
+    HistoricalOrderData, LimitOrder, FilledOrder,
+    MarketOrder, StopOrder, StopLimitOrder
 )
 
 
@@ -104,21 +105,21 @@ class Trading212:
             pies.append(Pie(**pie))
         return pies
 
-    def create_pie(self, new_pie: NewPieIn) -> NewPieOut:
+    def create_pie(self, pie: Pie) -> Pie:
         """Creates a new pie
 
         https://t212public-api-docs.redoc.ly/#operation/create
 
         Args:
-            new_pie (NewPieIn): the new pie to create
+            pie (Pie): the new pie to create
 
         Returns:
-            NewPieOut: the new pie
+            Pie: the new pie
         """
         endpoint = self.url + "equity/pie"
-        response = self._post(endpoint, new_pie.model_dump())
+        response = self._post(endpoint, pie.model_dump())
 
-        return NewPieOut(**response)
+        return Pie(**response)
 
     def delete_pie(self, id: int) -> None:
         """Deletes a pie by ID
@@ -147,22 +148,22 @@ class Trading212:
 
         return Pie(**response)
 
-    def update_pie(self, id: int, new_pie: NewPieIn) -> NewPieOut:
+    def update_pie(self, id: int, pie: Pie) -> Pie:
         """Updates a pie by ID
 
         https://t212public-api-docs.redoc.ly/#operation/update
 
         Args:
             id (int): the ID of the pie
-            new_pie (NewPieIn): the new pie
+            pie (Pie): the new pie
 
         Returns:
-            NewPieOut: the new pie
+            Pie: the new pie
         """
         endpoint = self.url + f"equity/pie/{id}"
-        response = self._post(endpoint, new_pie.model_dump())
+        response = self._post(endpoint, pie.model_dump())
 
-        return NewPieOut(**response)
+        return Pie(**response)
 
     def fetch_all_orders(self) -> List[Order]:
         """ Fetches all orders
@@ -179,6 +180,70 @@ class Trading212:
         for order in response:
             orders.append(Order(**order))
         return orders
+
+    def place_limit_order(self, limit_order: LimitOrder) -> FilledOrder:
+        """Places a limit order
+
+        https://t212public-api-docs.redoc.ly/#operation/placeLimitOrder
+
+        Args:
+            limit_order (LimitOrder): the limit order to place
+
+        Returns:
+            FilledOrder: the filled order
+        """
+        endpoint = self.url + "equity/orders/limit"
+        response = self._post(endpoint, limit_order.model_dump())
+
+        return FilledOrder(**response)
+
+    def place_market_order(self, market_order: MarketOrder) -> FilledOrder:
+        """Places a market order
+
+        https://t212public-api-docs.redoc.ly/#operation/placeMarketOrder
+
+        Args:
+            market_order (MarketOrder): the market order to place
+
+        Returns:
+            FilledOrder: the filled order
+        """
+        endpoint = self.url + "equity/orders/market"
+        response = self._post(endpoint, market_order.model_dump())
+
+        return FilledOrder(**response)
+
+    def place_stop_order(self, stop_order: StopOrder) -> FilledOrder:
+        """Places a stop order
+
+        https://t212public-api-docs.redoc.ly/#operation/placeStopOrder
+
+        Args:
+            stop_order (StopOrder): the stop order to place
+
+        Returns:
+            FilledOrder: the filled order
+        """
+        endpoint = self.url + "equity/orders/stop"
+        response = self._post(endpoint, stop_order.model_dump())
+
+        return FilledOrder(**response)
+
+    def place_stop_limit_order(self, stop_limit_order: StopLimitOrder) -> FilledOrder:
+        """Places a stop limit order
+
+        https://t212public-api-docs.redoc.ly/#operation/placeStopLimitOrder
+
+        Args:
+            stop_limit_order (StopLimitOrder): the stop limit order to place
+
+        Returns:
+            FilledOrder: the filled order
+        """
+        endpoint = self.url + "equity/orders/stop_limit"
+        response = self._post(endpoint, stop_limit_order.model_dump())
+
+        return FilledOrder(**response)
 
     def fetch_order(self, id: int) -> Order:
         """Fetches an order by ID

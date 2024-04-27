@@ -30,7 +30,7 @@ pie: Pie = trading212.fetch_pie(123)
 positions: List[Position] = trading212.fetch_all_open_positions()
 
 trading212.create_pie(
-    NewPieIn(
+    Pie(
         name='My Pie',
         ...
     )
@@ -56,10 +56,10 @@ trading212.create_pie(
 ## Equity Orders
 
 - [x] Fetch all
-- [ ] Place Limit order
-- [ ] Place Market order
-- [ ] Place Stop order
-- [ ] Place StopLimit order
+- [x] Place Limit order
+- [x] Place Market order
+- [x] Place Stop order
+- [x] Place StopLimit order
 - [ ] Cancel by ID
 - [ ] Fetch by ID
 
