@@ -60,8 +60,8 @@ trading212.create_pie(
 - [x] Place Market order
 - [x] Place Stop order
 - [x] Place StopLimit order
-- [ ] Cancel by ID
-- [ ] Fetch by ID
+- [x] Cancel by ID
+- [x] Fetch by ID
 
 ## Account Data
 
@@ -76,10 +76,10 @@ trading212.create_pie(
 ## Historical Items
 
 - [x] Historical order data
-- [ ] Paid out dividens
-- [ ] Exports List
-- [ ] Export csv
-- [ ] Transaction list
+- [x] Paid out dividens
+- [x] Exports List
+- [x] Export csv
+- [x] Transaction list
 
 ## Disclaimer
 

@@ -5,8 +5,9 @@ from requests.exceptions import HTTPError
 from python_trading212.models import (
     Position, Exchange, Instrument,
     Pie, Order, AccountCash, AccountMetadata,
-    HistoricalOrderData, LimitOrder, FilledOrder,
-    MarketOrder, StopOrder, StopLimitOrder
+    HistoricalOrderData, LimitOrder, MarketOrder,
+    StopOrder, StopLimitOrder, PaidOutDividends,
+    Export, Report, TransactionList
 )
 
 
@@ -181,7 +182,7 @@ class Trading212:
             orders.append(Order(**order))
         return orders
 
-    def place_limit_order(self, limit_order: LimitOrder) -> FilledOrder:
+    def place_limit_order(self, limit_order: LimitOrder) -> Order:
         """Places a limit order
 
         https://t212public-api-docs.redoc.ly/#operation/placeLimitOrder
@@ -190,14 +191,14 @@ class Trading212:
             limit_order (LimitOrder): the limit order to place
 
         Returns:
-            FilledOrder: the filled order
+            Order: the filled order
         """
         endpoint = self.url + "equity/orders/limit"
         response = self._post(endpoint, limit_order.model_dump())
 
-        return FilledOrder(**response)
+        return Order(**response)
 
-    def place_market_order(self, market_order: MarketOrder) -> FilledOrder:
+    def place_market_order(self, market_order: MarketOrder) -> Order:
         """Places a market order
 
         https://t212public-api-docs.redoc.ly/#operation/placeMarketOrder
@@ -206,14 +207,14 @@ class Trading212:
             market_order (MarketOrder): the market order to place
 
         Returns:
-            FilledOrder: the filled order
+            Order: the filled order
         """
         endpoint = self.url + "equity/orders/market"
         response = self._post(endpoint, market_order.model_dump())
 
-        return FilledOrder(**response)
+        return Order(**response)
 
-    def place_stop_order(self, stop_order: StopOrder) -> FilledOrder:
+    def place_stop_order(self, stop_order: StopOrder) -> Order:
         """Places a stop order
 
         https://t212public-api-docs.redoc.ly/#operation/placeStopOrder
@@ -222,14 +223,14 @@ class Trading212:
             stop_order (StopOrder): the stop order to place
 
         Returns:
-            FilledOrder: the filled order
+            Order: the filled order
         """
         endpoint = self.url + "equity/orders/stop"
         response = self._post(endpoint, stop_order.model_dump())
 
-        return FilledOrder(**response)
+        return Order(**response)
 
-    def place_stop_limit_order(self, stop_limit_order: StopLimitOrder) -> FilledOrder:
+    def place_stop_limit_order(self, stop_limit_order: StopLimitOrder) -> Order:
         """Places a stop limit order
 
         https://t212public-api-docs.redoc.ly/#operation/placeStopLimitOrder
@@ -238,12 +239,39 @@ class Trading212:
             stop_limit_order (StopLimitOrder): the stop limit order to place
 
         Returns:
-            FilledOrder: the filled order
+            Order: the filled order
         """
         endpoint = self.url + "equity/orders/stop_limit"
         response = self._post(endpoint, stop_limit_order.model_dump())
 
-        return FilledOrder(**response)
+        return Order(**response)
+
+    def cancel_order(self, id: int):
+        """Cancels an order by ID
+
+        https://t212public-api-docs.redoc.ly/#operation/cancelOrder
+
+        Args:
+            id (int): the ID of the order
+        """
+        endpoint = self.url + f"equity/orders/{id}"
+        return self._delete(endpoint)
+
+    def fetch_order_by_id(self, id: int) -> Order:
+        """Fetches an order by ID
+
+        https://t212public-api-docs.redoc.ly/#operation/orderById
+
+        Args:
+            id (int): the ID of the order
+
+        Returns:
+            Order: the order
+        """
+        endpoint = self.url + f"equity/orders/{id}"
+        response = self._get(endpoint)
+
+        return Order(**response)
 
     def fetch_order(self, id: int) -> Order:
         """Fetches an order by ID
@@ -349,3 +377,65 @@ class Trading212:
         response = self._get(endpoint, params)
 
         return HistoricalOrderData(**response)
+
+    def paid_out_dividends(self, cursor: int = None, ticker: str = None, limit: int = None) -> PaidOutDividends:
+        """Fetch paid out dividends
+
+        https://t212public-api-docs.redoc.ly/#operation/dividends
+
+        Returns:
+            List[DividendDetails]: _description_
+        """
+        endpoint = self.url + "equity/dividends"
+        response = self._get(endpoint, {
+            "cursor": cursor,
+            "ticker": ticker,
+            "limit": limit
+        })
+
+        return PaidOutDividends(**response)
+
+    def exports_list(self) -> List[Export]:
+        """Fetch all exports
+
+        https://t212public-api-docs.redoc.ly/#operation/getReports
+
+        Returns:
+            List[Export]: list of exports
+        """
+        endpoint = self.url + "history/exports"
+        response = self._get(endpoint)
+
+        return PaidOutDividends(**response)
+
+    def export_csv(self, export: Export) -> Report:
+        """Exports a CSV
+
+        https://t212public-api-docs.redoc.ly/#operation/requestReport
+
+        Args:
+            export (Export): the export settings
+
+        Returns:
+            Report: the report ID
+        """
+        endpoint = self.url + "history/exports"
+        response = self._post(endpoint, export.model_dump())
+
+        return Report(**response)
+
+    def transaction_list(self, cursor: str = None, limit: int = None) -> TransactionList:
+        """Fetch all transactions
+
+        https://t212public-api-docs.redoc.ly/#operation/transactions
+
+        Returns:
+            List[Transaction]: list of transactions
+        """
+        endpoint = self.url + "history/transactions"
+        response = self._get(endpoint, {
+            "cursor": cursor,
+            "limit": limit
+        })
+
+        return TransactionList(**response)

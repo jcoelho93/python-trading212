@@ -122,7 +122,7 @@ class Pie(BaseModel):
 
 
 class Order(BaseModel):
-    creationTime: str
+    creationTime: datetime
     filledQuantity: float
     filledValue: float
     id: int
@@ -233,16 +233,49 @@ class StopLimitOrder(BaseModel):
     timeValidity: str
 
 
-class FilledOrder(BaseModel):
-    creationTime: str
-    filledQuantity: float
-    filledValue: float
-    id: int
-    limitPrice: float
-    quantity: float
-    status: str
-    stopPrice: float
-    strategy: str
+class Dividend(BaseModel):
+    amount: int
+    amountInEuro: int
+    grossAmountPerShare: int
+    paidOn: str
+    quantity: int
+    reference: str
     ticker: str
     type: str
-    value: float
+
+
+class PaidOutDividends(BaseModel):
+    items: List[Dividend]
+    nextPagePath: str
+
+
+class DataIncluded(BaseModel):
+    includeDividends: bool
+    includeInterest: bool
+    includeOrders: bool
+    includeTransactions: bool
+
+
+class Export(BaseModel):
+    dataIncluded: DataIncluded
+    downloadLink: str
+    reportId: int
+    status: str
+    timeFrom: datetime
+    timeTo: datetime
+
+
+class Report(BaseModel):
+    reportId: int
+
+
+class Transaction(BaseModel):
+    amount: int
+    dateTime: datetime
+    reference: str
+    type: str
+
+
+class TransactionList(BaseModel):
+    items: List[Transaction]
+    nextPagePath: str
