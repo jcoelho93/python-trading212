@@ -4,6 +4,17 @@ version = "2.0.0"
 description = "An unofficial client for the official Trading212 API"
 authors = ["José Coelho <16445494+jcoelho93@users.noreply.github.com>"]
 readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/jcoelho93/python-trading212"
+repository = "https://github.com/jcoelho93/python-trading212"
+documentation = "https://github.com/jcoelho93/python-trading212"
+keywords = ["python", "trading212", "api", "client", "unofficial", "finance", "stocks", "trading"]
+classifiers = [
+    "Framework :: Pydantic",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment"
+]
 packages = [
     { include = "trading212", from = "." }
 ]
@@ -19,3 +30,6 @@ flake8 = "^7.0.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/jcoelho93/python-trading212/issues"
