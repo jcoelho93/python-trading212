@@ -2,7 +2,7 @@ import os
 import requests
 from typing import List, Dict
 from requests.exceptions import HTTPError
-from python_trading212.models import (
+from trading212.models import (
     Position, Exchange, Instrument,
     Pie, Order, AccountCash, AccountMetadata,
     HistoricalOrderData, LimitOrder, MarketOrder,

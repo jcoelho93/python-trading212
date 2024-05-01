@@ -4,6 +4,9 @@ version = "1.0.0"
 description = "An unofficial client for the official Trading212 API"
 authors = ["José Coelho <16445494+jcoelho93@users.noreply.github.com>"]
 readme = "README.md"
+packages = [
+    { include = "trading212", from = "." }
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"

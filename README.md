@@ -23,7 +23,7 @@ export TRADING_212_KEY=<your-api-key>
 ```
 
 ```python
-from python_trading212 import Trading212, Pie
+from trading212 import Trading212, Pie
 
 trading212 = Trading212()
 pie: Pie = trading212.fetch_pie(123)
