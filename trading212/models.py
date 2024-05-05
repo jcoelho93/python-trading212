@@ -76,16 +76,21 @@ class Exchange(BaseModel):
 
 
 class Instrument(BaseModel):
-    addedOn: str
-    currencyCode: str
-    isin: str
-    maxOpenQuantity: float
-    minTradeQuantity: float
-    name: str
-    shortname: str
     ticker: str
-    type: str
-    workingScheduleId: int
+    name: Optional[str] = None
+    type: Optional[str] = None
+    isin: Optional[str] = None
+    addedOn: Optional[str] = None
+    shortname: Optional[str] = None
+    result: Optional[Result] = None
+    currencyCode: Optional[str] = None
+    currentShare: Optional[float] = None
+    issues: Optional[List[Issue]] = None
+    ownedQuantity: Optional[float] = None
+    expectedShare: Optional[float] = None
+    workingScheduleId: Optional[int] = None
+    maxOpenQuantity: Optional[float] = None
+    minTradeQuantity: Optional[float] = None
 
 
 class DividendDetails(BaseModel):
@@ -159,12 +164,12 @@ class Issue(BaseModel):
 class Settings(BaseModel):
     creationDate: str
     dividendCashAction: str
-    endDate: str
+    endDate: Optional[str] = None
     goal: int
     icon: Optional[Icon]
     id: int
-    initialInvestment: int
-    instrumentShares: Dict[str, float]
+    initialInvestment: Optional[float] = None
+    instrumentShares: Optional[Dict[str, float]] = None
     name: str
     pubicUrl: str
 
