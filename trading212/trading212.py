@@ -117,7 +117,7 @@ class Trading212:
         Returns:
             Pie: the new pie
         """
-        endpoint = self.url + "equity/pie"
+        endpoint = self.url + "equity/pies"
         response = self._post(endpoint, pie.model_dump())
 
         return Pie(**response)
