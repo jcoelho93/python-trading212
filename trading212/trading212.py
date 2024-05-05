@@ -130,7 +130,7 @@ class Trading212:
         Args:
             id (int): the ID of the pie
         """
-        endpoint = self.url + f"equity/pie/{id}"
+        endpoint = self.url + f"equity/pies/{id}"
         return self._delete(endpoint)
 
     def fetch_pie(self, id: int) -> Pie:
@@ -144,7 +144,7 @@ class Trading212:
         Returns:
             Pie: the pie
         """
-        endpoint = self.url + f"equity/pie/{id}"
+        endpoint = self.url + f"equity/pies/{id}"
         response = self._get(endpoint)
 
         return Pie(**response)
@@ -161,7 +161,7 @@ class Trading212:
         Returns:
             Pie: the new pie
         """
-        endpoint = self.url + f"equity/pie/{id}"
+        endpoint = self.url + f"equity/pies/{id}"
         response = self._post(endpoint, pie.model_dump())
 
         return Pie(**response)
