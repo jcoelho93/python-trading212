@@ -386,7 +386,7 @@ class Trading212:
         Returns:
             List[DividendDetails]: _description_
         """
-        endpoint = self.url + "equity/dividends"
+        endpoint = self.url + "history/dividends"
         response = self._get(endpoint, {
             "cursor": cursor,
             "ticker": ticker,
