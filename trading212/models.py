@@ -1,7 +1,9 @@
 from __future__ import annotations
-from enum import Enum
+
 from datetime import datetime
-from typing import List, Optional, Dict
+from enum import Enum
+from typing import Dict, List, Optional
+
 from pydantic import BaseModel
 
 
@@ -142,7 +144,7 @@ class Order(BaseModel):
 
 
 class AccountCash(BaseModel):
-    blocked: float
+    blocked: float | None
     free: float
     invested: float
     pieCash: float
