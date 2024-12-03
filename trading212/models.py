@@ -277,7 +277,7 @@ class Report(BaseModel):
 
 
 class Transaction(BaseModel):
-    amount: int
+    amount: float
     dateTime: datetime
     reference: str
     type: str
