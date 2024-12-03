@@ -241,11 +241,11 @@ class StopLimitOrder(BaseModel):
 
 
 class Dividend(BaseModel):
-    amount: int
-    amountInEuro: int
-    grossAmountPerShare: int
-    paidOn: str
-    quantity: int
+    amount: float
+    amountInEuro: float
+    grossAmountPerShare: float
+    paidOn: datetime
+    quantity: float
     reference: str
     ticker: str
     type: str
