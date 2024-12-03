@@ -185,32 +185,32 @@ class Tax(BaseModel):
 
 class HistoryItem(BaseModel):
     dateCreated: datetime
-    dateExecuted: datetime
+    dateExecuted: datetime | None
     dateModified: datetime
     executor: str
-    fillCost: float
-    fillId: int
-    fillPrice: float
-    fillResult: float
-    fillType: str
-    filledQuantity: float
-    filledValue: float
+    fillCost: float | None
+    fillId: int | None
+    fillPrice: float | None
+    fillResult: float | None
+    fillType: str | None
+    filledQuantity: float | None
+    filledValue: float | None
     id: int
-    limitPrice: float
-    orderedQuantity: float
-    orderedValue: float
+    limitPrice: float | None
+    orderedQuantity: float | None
+    orderedValue: float | None
     parentOrder: int
     status: str
-    stopPrice: float
+    stopPrice: float | None
     taxes: List[Tax]
     ticker: str
-    timeValidity: str
+    timeValidity: str | None
     type: str
 
 
 class HistoricalOrderData(BaseModel):
     items: List[HistoryItem]
-    nextPagePath: str
+    nextPagePath: str | None
 
 
 class LimitOrder(BaseModel):

@@ -353,7 +353,7 @@ class Trading212:
 
         return Position(**response)
 
-    def historical_order_data(self, cursor: int, ticker: str, limit: int) -> HistoricalOrderData:
+    def historical_order_data(self, cursor: int | None = None, ticker: str | None = None, limit: int = None) -> HistoricalOrderData:
         """Fetch historical order data
 
         https://t212public-api-docs.redoc.ly/#operation/orders_1
@@ -367,14 +367,11 @@ class Trading212:
             HistoricalOrderData: _description_
         """
         endpoint = self.url + "equity/history/orders"
-        params = None
-        if cursor or ticker or limit:
-            params = {
-                "cursor": cursor,
-                "ticker": ticker,
-                "limit": limit
-            }
-        response = self._get(endpoint, params)
+        response = self._get(endpoint, {
+            "cursor": cursor,
+            "ticker": ticker,
+            "limit": limit
+        })
 
         return HistoricalOrderData(**response)
 
