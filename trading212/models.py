@@ -144,7 +144,7 @@ class Order(BaseModel):
 
 
 class AccountCash(BaseModel):
-    blocked: float | None
+    blocked: Optional[float]
     free: float
     invested: float
     pieCash: float
@@ -185,32 +185,32 @@ class Tax(BaseModel):
 
 class HistoryItem(BaseModel):
     dateCreated: datetime
-    dateExecuted: datetime | None
+    dateExecuted: Optional[datetime]
     dateModified: datetime
     executor: str
-    fillCost: float | None
-    fillId: int | None
-    fillPrice: float | None
-    fillResult: float | None
-    fillType: str | None
-    filledQuantity: float | None
-    filledValue: float | None
+    fillCost: Optional[float]
+    fillId: Optional[int]
+    fillPrice: Optional[float]
+    fillResult: Optional[float]
+    fillType: Optional[str]
+    filledQuantity: Optional[float]
+    filledValue: Optional[float]
     id: int
-    limitPrice: float | None
-    orderedQuantity: float | None
-    orderedValue: float | None
+    limitPrice: Optional[float]
+    orderedQuantity: Optional[float]
+    orderedValue: Optional[float]
     parentOrder: int
     status: str
-    stopPrice: float | None
+    stopPrice: Optional[float]
     taxes: List[Tax]
     ticker: str
-    timeValidity: str | None
+    timeValidity: Optional[str]
     type: str
 
 
 class HistoricalOrderData(BaseModel):
     items: List[HistoryItem]
-    nextPagePath: str | None
+    nextPagePath: Optional[str]
 
 
 class LimitOrder(BaseModel):
