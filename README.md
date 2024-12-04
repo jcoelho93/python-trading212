@@ -19,7 +19,7 @@ pip install python-trading212
 
 Set your API key in the environment variable:
 ```bash
-export TRADING_212_KEY=<your-api-key>
+export TRADING212_KEY=<your-api-key>
 ```
 
 ```python
