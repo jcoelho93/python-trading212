@@ -1,6 +1,6 @@
 import os
 import requests
-from typing import List, Dict
+from typing import List, Dict, Optional
 from requests.exceptions import HTTPError
 from trading212.models import (
     Position, Exchange, Instrument,
@@ -353,7 +353,7 @@ class Trading212:
 
         return Position(**response)
 
-    def historical_order_data(self, cursor: int | None = None, ticker: str | None = None, limit: int = None) -> HistoricalOrderData:
+    def historical_order_data(self, cursor: Optional[int] = None, ticker: Optional[str] = None, limit: Optional[int]) -> HistoricalOrderData:
         """Fetch historical order data
 
         https://t212public-api-docs.redoc.ly/#operation/orders_1
